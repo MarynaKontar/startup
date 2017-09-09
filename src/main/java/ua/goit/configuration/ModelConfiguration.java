@@ -30,27 +30,22 @@ public class ModelConfiguration {
 
     @Value("${db.url}")
     private String url;
-
     @Value("${db.username}")
     private String username;
-
     @Value("${db.password}")
     private String password;
-
     @Value("${db.driver}")
     private String driverClass;
-
     @Value("${db.dialect}")
     private String hibernateDialect;
-
-    @Value("classpath:tables_creation.sql")
-    private Resource scriptResource;
+    @Value("classpath:db.sql")
+    private Resource  scriptResource;
 
     @Bean(destroyMethod = "close")
     public BasicDataSource getDataSource() {
         BasicDataSource dataSource = new BasicDataSource();
-        dataSource.setDriverClassName(driverClass);
         dataSource.setUrl(url);
+        dataSource.setDriverClassName(driverClass);
         dataSource.setUsername(username);
         dataSource.setPassword(password);
         return dataSource;

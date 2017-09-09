@@ -16,8 +16,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @ComponentScan({"ua.goit.services"})
 public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    @Bean
-    public BCryptPasswordEncoder passwordEncoder(){
+    @Bean public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
@@ -25,7 +24,20 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-        .anyRequest().permitAll();
-//        .and().formLogin();
+                .antMatchers("/user/show").hasAnyRole("DEVELOPER", "INVESTOR", "ADMIN")
+                .antMatchers("/user/**").hasRole("ADMIN")
+                .antMatchers("/index.jsp").hasRole("ADMIN")
+                .anyRequest().denyAll()
+                .and().formLogin()
+                .and().csrf().disable();
+
+//        http.authorizeRequests()
+//                .antMatchers("/registration", "/register").not().authenticated()
+//                .anyRequest().authenticated()
+//                .and()
+//                .formLogin()
+//                .and()
+//                .csrf().disable()
+
     }
 }

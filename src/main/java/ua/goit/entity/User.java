@@ -15,7 +15,7 @@ public class User {
     private String password;
     private String email;
 
-    @ElementCollection(targetClass=Role.class)
+    @ElementCollection(targetClass=Role.class, fetch = FetchType.EAGER)
     @Enumerated(EnumType.STRING)
     @CollectionTable(name="user_roles")
     @Column(name="role") // Column name in user_roles
@@ -53,5 +53,15 @@ public class User {
 
     public void setRoles(Collection<Role> roles) {
         this.roles = roles;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", roles=" + roles +
+                '}';
     }
 }

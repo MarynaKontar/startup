@@ -30,8 +30,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String userLogin) throws UsernameNotFoundException {
-        User user = new User();
-        user = userService.findOne(userLogin);
+        User user = userService.findOne(userLogin);
         if (user == null) {
             throw new UsernameNotFoundException("User " + userLogin + "is not found");
         }
@@ -45,7 +44,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         private User user;
         private Collection<SimpleGrantedAuthority> grantedAuthorities;
 
-        UserDetailsExt(User user) {
+        public  UserDetailsExt(User user) {
             this.user = user;
             this.grantedAuthorities = new ArrayList<>();//use Set if need
             Collection<Role> roles = user.getRoles();
