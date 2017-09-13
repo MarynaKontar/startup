@@ -54,6 +54,10 @@ public class ShowUsersController {
         user.setEmail("email");
         Collection<Role> roles = Arrays.asList(Role.DEVELOPER, Role.ADMIN);
         user.setRoles(roles);
+        user.setPersonalPageFotoLink("jpeg/personalPageFoto/adminFoto.jpg");//TODO Как ссылку указывать?
+        user.setYoutubeLink("https://www.youtube.com/watch?v=3wBteulZaAs&index=1&list=PL6jg6AGdCNaWF-sUH2QDudBRXo54zuN1t");
+        user.setAboutMe("I'm admin!");
+        user.setSkills("JavaCore, Spring, Hibernate");
         usersService.save(user);
 
 

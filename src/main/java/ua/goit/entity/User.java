@@ -15,13 +15,26 @@ public class User {
     private String password;
     private String email;
 
+    @OneToOne
+    @JoinColumn(name = "contact_id")
+    private Contact contact;
+
+    private String profileFotoLink;
+    private String personalPageFotoLink;
+//
+    private String youtubeLink;
+    private String aboutMe;
+//
+//    //TODO 6 прописать маппинг
+//    private Collection<Experience> experiences;
+//    private Collection<Education> educations;
+    private String skills;
+
     @ElementCollection(targetClass=Role.class, fetch = FetchType.EAGER)
     @Enumerated(EnumType.STRING)
     @CollectionTable(name="user_roles")
     @Column(name="role") // Column name in user_roles
     private Collection<Role> roles;
-
-    //TODO 6 обсудить поля
 
     public String getUsername() {
         return username;
@@ -47,6 +60,70 @@ public class User {
         this.email = email;
     }
 
+    public Contact getContact() {
+        return contact;
+    }
+
+    public void setContact(Contact contact) {
+        this.contact = contact;
+    }
+
+    public String getProfileFotoLink() {
+        return profileFotoLink;
+    }
+
+    public void setProfileFotoLink(String profileFotoLink) {
+        this.profileFotoLink = profileFotoLink;
+    }
+
+    public String getPersonalPageFotoLink() {
+        return personalPageFotoLink;
+    }
+
+    public void setPersonalPageFotoLink(String personalPageFotoLink) {
+        this.personalPageFotoLink = personalPageFotoLink;
+    }
+
+    public String getYoutubeLink() {
+        return youtubeLink;
+    }
+
+    public void setYoutubeLink(String youtubeLink) {
+        this.youtubeLink = youtubeLink;
+    }
+
+    public String getAboutMe() {
+        return aboutMe;
+    }
+
+    public void setAboutMe(String aboutMe) {
+        this.aboutMe = aboutMe;
+    }
+
+//    public Collection<Experience> getExperiences() {
+//        return experiences;
+//    }
+//
+//    public void setExperiences(Collection<Experience> experiences) {
+//        this.experiences = experiences;
+//    }
+//
+//    public Collection<Education> getEducations() {
+//        return educations;
+//    }
+//
+//    public void setEducations(Collection<Education> educations) {
+//        this.educations = educations;
+//    }
+
+    public String getSkills() {
+        return skills;
+    }
+
+    public void setSkills(String skills) {
+        this.skills = skills;
+    }
+
     public Collection<Role> getRoles() {
         return roles;
     }
@@ -55,13 +132,4 @@ public class User {
         this.roles = roles;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", email='" + email + '\'' +
-                ", roles=" + roles +
-                '}';
-    }
 }
