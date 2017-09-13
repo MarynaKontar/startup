@@ -7,19 +7,19 @@ import java.util.Collection;
  * Created by Guillaume Gingembre on 12/09/2017.
  */
 
-@Entity
-@Table(name = "businessplans")
+//@Entity
+//@Table(name = "businessplans")
 public class BusinessPlan {
-
+/*
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "businessplan_id")
     private long businessplan_id;
 
     // one start up may have many business plans, many to one relationship
-    @ManyToOne(cascade = CascadeType.ALL)
-    @Column(name = "startup_id")
-    private String startUpId;
+    //@ManyToOne(cascade = CascadeType.ALL)
+    @Column(name = "project_id")
+    private String projectId;
 
     @Column(name = "idea")
     private String idea;
@@ -94,14 +94,10 @@ public class BusinessPlan {
 
 
 
-    /*
-
     // many to many relationship mapping:
 
     @ManyToMany(mappedBy = "businessplans")
-    private Collection<StartUp> startUps;
-
-    */
+    private Collection<Project> projects;
 
     public long getBusinessplan_id() {
         return businessplan_id;
@@ -270,4 +266,6 @@ public class BusinessPlan {
                 ", docurl='" + docurl + '\'' +
                 '}';
     }
+
+    */
 }

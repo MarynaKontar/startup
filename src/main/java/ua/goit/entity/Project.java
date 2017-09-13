@@ -1,6 +1,7 @@
 package ua.goit.entity;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
@@ -9,76 +10,75 @@ import java.util.Set;
  * Created by Guillaume Gingembre on 13/09/2017.
  */
 
-@Entity
-@Table(name = "startups")
-public class StartUp {
+//@Entity
+//@Table(name = "projects")
+public class Project { // name it Project
 
+    //
+/*
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "startup_id")
-    private long startUpId;
+    @Column(name = "project_id")
+    private long projectId;
 
-    @Column(name = "startup_name")
-    private String startUpName;
+    @Column(name = "project_name")
+    private String projectName;
 
-    @Column(name = "startup_industry")
-    private String startUpIndustry;
+    @Column(name = "project_industry") // do enum of 10 industries
+    private String projectIndustry;
 
-    @Column(name = "startup_region")
-    private String startUpRegion;
+    @Column(name = "project_address") // do a class address
+    private Address projectAddress;
 
-    @Column(name = "startup_description")
-    private String startUpDescription;
+    @Column(name = "project_description")
+    private String projectDescription;
 
-    @Column(name = "startup_logo")
-    private String logo;
+    @Column(name = "project_logo_link")
+    private String logoLink;
 
-    @Column(name = "startup_doc")
-    private String startUpDoc;
+    @Column(name = "project_doc_link")
+    private String projectDocLink;
 
-    @Column(name = "startup_site")
-    private String startUpSite;
+    @Column(name = "project_site_link")
+    private String projectSiteLink;
 
-    @Column(name = "startup_expected_raise")
-    private long startUpExpectedRaise;
+    @Column(name = "project_expected_raise")
+    private BigDecimal projectExpectedRaise;
 
-    @Column(name = "startup_min_inv")
-    private long startUpMinInv;
+    @Column(name = "project_amount_raised")
+    private BigDecimal projectAmountRaised;
 
-    @Column(name = "startup_irr")
-    private long startUpIrr;
+    @Column(name = "project_min_inv")
+    private BigDecimal projectMinInv;
 
-    @Column(name = "startup_last_change")
-    private LocalDate startUpLastChange;
+    @Column(name = "project_return")
+    private long projectReturn;
 
-    @Column(name = "startup_active")
-    private boolean startUpActive;
+    @Column(name = "project_last_change")
+    private LocalDate projectLastChange;
 
-    public StartUp (){}
+    @Column(name = "isActive")
+    private boolean isActive;
 
-    public StartUp(String startUpName, String startUpIndustry, String startUpRegion, String startUpDescription, String logo, String startUpDoc, String startUpSite, long startUpExpectedRaise, long startUpMinInv, long startUpIrr, LocalDate startUpLastChange, boolean startUpActive) {
-        this.startUpName = startUpName;
-        this.startUpIndustry = startUpIndustry;
-        this.startUpRegion = startUpRegion;
-        this.startUpDescription = startUpDescription;
-        this.logo = logo;
-        this.startUpDoc = startUpDoc;
-        this.startUpSite = startUpSite;
-        this.startUpExpectedRaise = startUpExpectedRaise;
-        this.startUpMinInv = startUpMinInv;
-        this.startUpIrr = startUpIrr;
-        this.startUpLastChange = startUpLastChange;
-        this.startUpActive = startUpActive;
+    public Project(){}
+
+    public Project(String projectName, String projectIndustry, Address projectAddress, String projectDescription, String logoLink, String projectDocLink, String projectSiteLink, BigDecimal projectExpectedRaise, BigDecimal projectAmountRaised, BigDecimal projectMinInv, long projectReturn, LocalDate projectLastChange, boolean isActive) {
+        this.projectName = projectName;
+        this.projectIndustry = projectIndustry;
+        this.projectAddress = projectAddress;
+        this.projectDescription = projectDescription;
+        this.logoLink = logoLink;
+        this.projectDocLink = projectDocLink;
+        this.projectSiteLink = projectSiteLink;
+        this.projectExpectedRaise = projectExpectedRaise;
+        this.projectAmountRaised = projectAmountRaised;
+        this.projectMinInv = projectMinInv;
+        this.projectReturn = projectReturn;
+        this.projectLastChange = projectLastChange;
+        this.isActive = isActive;
     }
 
-    // one start up may have many business plans, many to one relationship
 
-
-    /*
-
-    IN CASE WE DECIDE MANY TO MANY, HERE IS THE CODE...
-    But I prefer many business plans to one start up (i.e. each business plan has just one start up, but a start up
-    may have many business plans).
 
     // one start up may have many business plans, and one business plan may have many start ups: many to many
 
@@ -90,7 +90,7 @@ public class StartUp {
             inverseJoinColumns = { @JoinColumn(name = "businessplan_id",
                     nullable = false, updatable = false) })
 
-    */
+
 
     public long getStartUpId() {
         return startUpId;
@@ -198,7 +198,7 @@ public class StartUp {
 
     @Override
     public String toString() {
-        return "StartUp{" +
+        return "Project{" +
                 "startUpId=" + startUpId +
                 ", startUpName='" + startUpName + '\'' +
                 ", startUpIndustry='" + startUpIndustry + '\'' +
@@ -213,4 +213,6 @@ public class StartUp {
                 ", startUpActive=" + startUpActive +
                 '}';
     }
+
+    */
 }

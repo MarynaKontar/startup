@@ -1,8 +1,7 @@
 package ua.goit.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import ua.goit.entity.StartUp;
+import ua.goit.entity.Project;
 
 import java.util.List;
 
@@ -12,16 +11,16 @@ import java.util.List;
  */
 
 /**
- * Data access object for {@link ua.goit.entity.StartUp}
+ * Data access object for {@link Project}
  */
 
-public interface StartUpDao extends JpaRepository<StartUp, String>{
-
-    StartUp findByName(String name);
-    List<StartUp> findByIndustry(String industry);
-    List<StartUp> findByRegion(String region);
-    List<StartUp> findByInvSize(long invSize);
-    List<StartUp> findByMinIrr(long minIrr);
-    List<StartUp> findActive();
-
+public interface StartUpDao { // extends JpaRepository<Project, String>{
+/*
+    Project findByName(String name);
+    List<Project> findByIndustry(String industry);
+    List<Project> findByRegion(String region);
+    List<Project> findByInvSize(long invSize);
+    List<Project> findByMinIrr(long minIrr);
+    List<Project> findActive();
+*/
 }
