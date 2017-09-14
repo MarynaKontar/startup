@@ -7,10 +7,9 @@ import java.util.Collection;
  * Created by Guillaume Gingembre on 12/09/2017.
  */
 
-//@Entity
-//@Table(name = "businessplans")
+@Entity
+@Table(name = "businessplans")
 public class BusinessPlan {
-/*
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "businessplan_id")
@@ -20,6 +19,9 @@ public class BusinessPlan {
     //@ManyToOne(cascade = CascadeType.ALL)
     @Column(name = "project_id")
     private String projectId;
+
+    @Column(name = "address")
+    private Address address;
 
     @Column(name = "idea")
     private String idea;
@@ -72,8 +74,17 @@ public class BusinessPlan {
 
     public BusinessPlan (){}
 
-    public BusinessPlan(String startUpId, String idea, String currentState, String market, String opportunity, String solution, String competition, String usp, String businessModel, String fundsUses, String mentors, String risks, String finances, String previousRounds, String collateral, String weburl, String docurl) {
-        this.startUpId = startUpId;
+
+
+
+    // many to many relationship mapping:
+
+    @ManyToMany(mappedBy = "businessplans")
+    private Collection<Project> projects;
+
+    public BusinessPlan(String projectId, Address address, String idea, String currentState, String market, String opportunity, String solution, String competition, String usp, String businessModel, String fundsUses, String mentors, String risks, String finances, String previousRounds, String collateral, String weburl, String docurl, Collection<Project> projects) {
+        this.projectId = projectId;
+        this.address = address;
         this.idea = idea;
         this.currentState = currentState;
         this.market = market;
@@ -90,14 +101,8 @@ public class BusinessPlan {
         this.collateral = collateral;
         this.weburl = weburl;
         this.docurl = docurl;
+        this.projects = projects;
     }
-
-
-
-    // many to many relationship mapping:
-
-    @ManyToMany(mappedBy = "businessplans")
-    private Collection<Project> projects;
 
     public long getBusinessplan_id() {
         return businessplan_id;
@@ -105,6 +110,22 @@ public class BusinessPlan {
 
     public void setBusinessplan_id(long businessplan_id) {
         this.businessplan_id = businessplan_id;
+    }
+
+    public String getProjectId() {
+        return projectId;
+    }
+
+    public void setProjectId(String projectId) {
+        this.projectId = projectId;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     public String getIdea() {
@@ -219,14 +240,6 @@ public class BusinessPlan {
         this.collateral = collateral;
     }
 
-    public String getStartUpId() {
-        return startUpId;
-    }
-
-    public void setStartUpId(String startUpId) {
-        this.startUpId = startUpId;
-    }
-
     public String getWeburl() {
         return weburl;
     }
@@ -243,11 +256,20 @@ public class BusinessPlan {
         this.docurl = docurl;
     }
 
+    public Collection<Project> getProjects() {
+        return projects;
+    }
+
+    public void setProjects(Collection<Project> projects) {
+        this.projects = projects;
+    }
+
     @Override
     public String toString() {
         return "BusinessPlan{" +
                 "businessplan_id=" + businessplan_id +
-                ", startUpId='" + startUpId + '\'' +
+                ", projectId='" + projectId + '\'' +
+                ", address=" + address +
                 ", idea='" + idea + '\'' +
                 ", currentState='" + currentState + '\'' +
                 ", market='" + market + '\'' +
@@ -264,8 +286,7 @@ public class BusinessPlan {
                 ", collateral='" + collateral + '\'' +
                 ", weburl='" + weburl + '\'' +
                 ", docurl='" + docurl + '\'' +
+                ", projects=" + projects +
                 '}';
     }
-
-    */
 }

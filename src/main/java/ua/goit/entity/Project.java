@@ -10,12 +10,10 @@ import java.util.Set;
  * Created by Guillaume Gingembre on 13/09/2017.
  */
 
-//@Entity
-//@Table(name = "projects")
+@Entity
+@Table(name = "projects")
 public class Project { // name it Project
 
-    //
-/*
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "project_id")
@@ -24,10 +22,10 @@ public class Project { // name it Project
     @Column(name = "project_name")
     private String projectName;
 
-    @Column(name = "project_industry") // do enum of 10 industries
-    private String projectIndustry;
+    @Column(name = "project_industry") // do enum of 10 industries - done!
+    private Industry projectIndustry;
 
-    @Column(name = "project_address") // do a class address
+    @Column(name = "project_address") // do a class address - done!
     private Address projectAddress;
 
     @Column(name = "project_description")
@@ -62,7 +60,7 @@ public class Project { // name it Project
 
     public Project(){}
 
-    public Project(String projectName, String projectIndustry, Address projectAddress, String projectDescription, String logoLink, String projectDocLink, String projectSiteLink, BigDecimal projectExpectedRaise, BigDecimal projectAmountRaised, BigDecimal projectMinInv, long projectReturn, LocalDate projectLastChange, boolean isActive) {
+    public Project(String projectName, Industry projectIndustry, Address projectAddress, String projectDescription, String logoLink, String projectDocLink, String projectSiteLink, BigDecimal projectExpectedRaise, BigDecimal projectAmountRaised, BigDecimal projectMinInv, long projectReturn, LocalDate projectLastChange, boolean isActive, Set<BusinessPlan> businessPlans) {
         this.projectName = projectName;
         this.projectIndustry = projectIndustry;
         this.projectAddress = projectAddress;
@@ -76,143 +74,158 @@ public class Project { // name it Project
         this.projectReturn = projectReturn;
         this.projectLastChange = projectLastChange;
         this.isActive = isActive;
+        this.businessPlans = businessPlans;
     }
 
-
-
-    // one start up may have many business plans, and one business plan may have many start ups: many to many
+// one start up may have many business plans, and one business plan may have many start ups: many to many
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<BusinessPlan> businessPlans = new HashSet<BusinessPlan>(0);
 
-    @JoinTable(name = "startups_businessplans", joinColumns = {
-            @JoinColumn(name = "startUpId", nullable = false, updatable = false) },
+    @JoinTable(name = "projects_businessplans", joinColumns = {
+            @JoinColumn(name = "project_Id", nullable = false, updatable = false) },
             inverseJoinColumns = { @JoinColumn(name = "businessplan_id",
                     nullable = false, updatable = false) })
 
 
-
-    public long getStartUpId() {
-        return startUpId;
+    public long getProjectId() {
+        return projectId;
     }
 
-    public void setStartUpId(long startUpId) {
-        this.startUpId = startUpId;
+    public void setProjectId(long projectId) {
+        this.projectId = projectId;
     }
 
-    public String getStartUpName() {
-        return startUpName;
+    public String getProjectName() {
+        return projectName;
     }
 
-    public void setStartUpName(String startUpName) {
-        this.startUpName = startUpName;
+    public void setProjectName(String projectName) {
+        this.projectName = projectName;
     }
 
-    public String getStartUpIndustry() {
-        return startUpIndustry;
+    public Industry getProjectIndustry() {
+        return projectIndustry;
     }
 
-    public void setStartUpIndustry(String startUpIndustry) {
-        this.startUpIndustry = startUpIndustry;
+    public void setProjectIndustry(Industry projectIndustry) {
+        this.projectIndustry = projectIndustry;
     }
 
-    public String getStartUpDescription() {
-        return startUpDescription;
+    public Address getProjectAddress() {
+        return projectAddress;
     }
 
-    public void setStartUpDescription(String startUpDescription) {
-        this.startUpDescription = startUpDescription;
+    public void setProjectAddress(Address projectAddress) {
+        this.projectAddress = projectAddress;
     }
 
-    public String getLogo() {
-        return logo;
+    public String getProjectDescription() {
+        return projectDescription;
     }
 
-    public void setLogo(String logo) {
-        this.logo = logo;
+    public void setProjectDescription(String projectDescription) {
+        this.projectDescription = projectDescription;
     }
 
-    public String getStartUpDoc() {
-        return startUpDoc;
+    public String getLogoLink() {
+        return logoLink;
     }
 
-    public void setStartUpDoc(String startUpDoc) {
-        this.startUpDoc = startUpDoc;
+    public void setLogoLink(String logoLink) {
+        this.logoLink = logoLink;
     }
 
-    public String getStartUpSite() {
-        return startUpSite;
+    public String getProjectDocLink() {
+        return projectDocLink;
     }
 
-    public void setStartUpSite(String startUpSite) {
-        this.startUpSite = startUpSite;
+    public void setProjectDocLink(String projectDocLink) {
+        this.projectDocLink = projectDocLink;
     }
 
-    public long getStartUpExpectedRaise() {
-        return startUpExpectedRaise;
+    public String getProjectSiteLink() {
+        return projectSiteLink;
     }
 
-    public void setStartUpExpectedRaise(long startUpExpectedRaise) {
-        this.startUpExpectedRaise = startUpExpectedRaise;
+    public void setProjectSiteLink(String projectSiteLink) {
+        this.projectSiteLink = projectSiteLink;
     }
 
-    public long getStartUpMinInv() {
-        return startUpMinInv;
+    public BigDecimal getProjectExpectedRaise() {
+        return projectExpectedRaise;
     }
 
-    public void setStartUpMinInv(long startUpMinInv) {
-        this.startUpMinInv = startUpMinInv;
+    public void setProjectExpectedRaise(BigDecimal projectExpectedRaise) {
+        this.projectExpectedRaise = projectExpectedRaise;
     }
 
-    public long getStartUpIrr() {
-        return startUpIrr;
+    public BigDecimal getProjectAmountRaised() {
+        return projectAmountRaised;
     }
 
-    public void setStartUpIrr(long startUpIrr) {
-        this.startUpIrr = startUpIrr;
+    public void setProjectAmountRaised(BigDecimal projectAmountRaised) {
+        this.projectAmountRaised = projectAmountRaised;
     }
 
-    public LocalDate getStartUpLastChange() {
-        return startUpLastChange;
+    public BigDecimal getProjectMinInv() {
+        return projectMinInv;
     }
 
-    public void setStartUpLastChange(LocalDate startUpLastChange) {
-        this.startUpLastChange = startUpLastChange;
+    public void setProjectMinInv(BigDecimal projectMinInv) {
+        this.projectMinInv = projectMinInv;
     }
 
-    public boolean isStartUpActive() {
-        return startUpActive;
+    public long getProjectReturn() {
+        return projectReturn;
     }
 
-    public void setStartUpActive(boolean startUpActive) {
-        this.startUpActive = startUpActive;
+    public void setProjectReturn(long projectReturn) {
+        this.projectReturn = projectReturn;
     }
 
-    public String getStartUpRegion() {
-        return startUpRegion;
+    public LocalDate getProjectLastChange() {
+        return projectLastChange;
     }
 
-    public void setStartUpRegion(String startUpRegion) {
-        this.startUpRegion = startUpRegion;
+    public void setProjectLastChange(LocalDate projectLastChange) {
+        this.projectLastChange = projectLastChange;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
+    public Set<BusinessPlan> getBusinessPlans() {
+        return businessPlans;
+    }
+
+    public void setBusinessPlans(Set<BusinessPlan> businessPlans) {
+        this.businessPlans = businessPlans;
     }
 
     @Override
     public String toString() {
         return "Project{" +
-                "startUpId=" + startUpId +
-                ", startUpName='" + startUpName + '\'' +
-                ", startUpIndustry='" + startUpIndustry + '\'' +
-                ", startUpDescription='" + startUpDescription + '\'' +
-                ", logo='" + logo + '\'' +
-                ", startUpDoc='" + startUpDoc + '\'' +
-                ", startUpSite='" + startUpSite + '\'' +
-                ", startUpExpectedRaise='" + startUpExpectedRaise + '\'' +
-                ", startUpMinInv='" + startUpMinInv + '\'' +
-                ", startUpIrr='" + startUpIrr + '\'' +
-                ", startUpLastChange=" + startUpLastChange +
-                ", startUpActive=" + startUpActive +
+                "projectId=" + projectId +
+                ", projectName='" + projectName + '\'' +
+                ", projectIndustry=" + projectIndustry +
+                ", projectAddress=" + projectAddress +
+                ", projectDescription='" + projectDescription + '\'' +
+                ", logoLink='" + logoLink + '\'' +
+                ", projectDocLink='" + projectDocLink + '\'' +
+                ", projectSiteLink='" + projectSiteLink + '\'' +
+                ", projectExpectedRaise=" + projectExpectedRaise +
+                ", projectAmountRaised=" + projectAmountRaised +
+                ", projectMinInv=" + projectMinInv +
+                ", projectReturn=" + projectReturn +
+                ", projectLastChange=" + projectLastChange +
+                ", isActive=" + isActive +
+                ", businessPlans=" + businessPlans +
                 '}';
     }
-
-    */
 }

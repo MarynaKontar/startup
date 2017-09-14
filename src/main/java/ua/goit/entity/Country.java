@@ -5,6 +5,6 @@ package ua.goit.entity;
  */
 public enum Country {
 
-    UKRAINE, KAZAKHSTAN
+    UKRAINE
 
 }
