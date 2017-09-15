@@ -2,6 +2,7 @@ package ua.goit.entity;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Collection;
 
 /**
@@ -59,6 +60,24 @@ public class BusinessPlan {
     @Column(name = "risks")
     private String risks;
 
+    @Column(name = "weburl")
+    private String weburl;
+
+    @Column(name = "docurl")
+    private String docurl;
+
+    @Column(name = "businessplan_expected_raise")
+    private BigDecimal businessPlanExpectedRaise;
+
+    @Column(name = "businessplan_amount_raised")
+    private BigDecimal businessPlanAmountRaised;
+
+    @Column(name = "businessplan_min_inv")
+    private BigDecimal businessPlanMinInv;
+
+    @Column(name = "businessplan_return")
+    private double businessPlanReturn;
+
     @Column(name = "finances")
     private String finances;
 
@@ -68,11 +87,11 @@ public class BusinessPlan {
     @Column(name = "collateral")
     private String collateral;
 
-    @Column(name = "weburl")
-    private String weburl;
+    @Column(name = "businessplan_last_change")
+    private LocalDate businessPlanLastChange;
 
-    @Column(name = "docurl")
-    private String docurl;
+    @Column(name = "isActive")
+    private boolean isActive;
 
     // many to many relationship mapping:
 
@@ -82,7 +101,7 @@ public class BusinessPlan {
 
     public BusinessPlan (){}
 
-    public BusinessPlan(long projectId, Address address, String idea, String currentState, String market, String opportunity, String solution, String competition, String usp, String businessModel, String fundsUses, String mentors, String risks, String finances, BigDecimal previousRounds, String collateral, String weburl, String docurl){ //, Collection<Project> projects) {
+    public BusinessPlan(long projectId, Address address, String idea, String currentState, String market, String opportunity, String solution, String competition, String usp, String businessModel, String fundsUses, String mentors, String risks, String weburl, String docurl, BigDecimal businessPlanExpectedRaise, BigDecimal businessPlanAmountRaised, BigDecimal businessPlanMinInv, double businessPlanReturn, String finances, BigDecimal previousRounds, String collateral, LocalDate businessPlanLastChange, boolean isActive) {
         this.projectId = projectId;
         this.address = address;
         this.idea = idea;
@@ -96,12 +115,17 @@ public class BusinessPlan {
         this.fundsUses = fundsUses;
         this.mentors = mentors;
         this.risks = risks;
+        this.weburl = weburl;
+        this.docurl = docurl;
+        this.businessPlanExpectedRaise = businessPlanExpectedRaise;
+        this.businessPlanAmountRaised = businessPlanAmountRaised;
+        this.businessPlanMinInv = businessPlanMinInv;
+        this.businessPlanReturn = businessPlanReturn;
         this.finances = finances;
         this.previousRounds = previousRounds;
         this.collateral = collateral;
-        this.weburl = weburl;
-        this.docurl = docurl;
-        //this.projects = projects;
+        this.businessPlanLastChange = businessPlanLastChange;
+        this.isActive = isActive;
     }
 
     public long getBusinessplan_id() {
@@ -256,6 +280,54 @@ public class BusinessPlan {
         this.docurl = docurl;
     }
 
+    public BigDecimal getBusinessPlanExpectedRaise() {
+        return businessPlanExpectedRaise;
+    }
+
+    public void setBusinessPlanExpectedRaise(BigDecimal businessPlanExpectedRaise) {
+        this.businessPlanExpectedRaise = businessPlanExpectedRaise;
+    }
+
+    public BigDecimal getBusinessPlanAmountRaised() {
+        return businessPlanAmountRaised;
+    }
+
+    public void setBusinessPlanAmountRaised(BigDecimal businessPlanAmountRaised) {
+        this.businessPlanAmountRaised = businessPlanAmountRaised;
+    }
+
+    public BigDecimal getBusinessPlanMinInv() {
+        return businessPlanMinInv;
+    }
+
+    public void setBusinessPlanMinInv(BigDecimal businessPlanMinInv) {
+        this.businessPlanMinInv = businessPlanMinInv;
+    }
+
+    public double getBusinessPlanReturn() {
+        return businessPlanReturn;
+    }
+
+    public void setBusinessPlanReturn(double businessPlanReturn) {
+        this.businessPlanReturn = businessPlanReturn;
+    }
+
+    public LocalDate getBusinessPlanLastChange() {
+        return businessPlanLastChange;
+    }
+
+    public void setBusinessPlanLastChange(LocalDate businessPlanLastChange) {
+        this.businessPlanLastChange = businessPlanLastChange;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
     public Collection<Project> getProjects() {
         return projects;
     }
@@ -266,9 +338,9 @@ public class BusinessPlan {
 
     @Override
     public String toString() {
-        return "Classes.BusinessPlan{" +
+        return "BusinessPlan{" +
                 "businessplan_id=" + businessplan_id +
-                ", projectId='" + projectId + '\'' +
+                ", projectId=" + projectId +
                 ", address=" + address +
                 ", idea='" + idea + '\'' +
                 ", currentState='" + currentState + '\'' +
@@ -281,11 +353,17 @@ public class BusinessPlan {
                 ", fundsUses='" + fundsUses + '\'' +
                 ", mentors='" + mentors + '\'' +
                 ", risks='" + risks + '\'' +
-                ", finances='" + finances + '\'' +
-                ", previousRounds='" + previousRounds + '\'' +
-                ", collateral='" + collateral + '\'' +
                 ", weburl='" + weburl + '\'' +
                 ", docurl='" + docurl + '\'' +
+                ", businessPlanExpectedRaise=" + businessPlanExpectedRaise +
+                ", businessPlanAmountRaised=" + businessPlanAmountRaised +
+                ", businessPlanMinInv=" + businessPlanMinInv +
+                ", businessPlanReturn=" + businessPlanReturn +
+                ", finances='" + finances + '\'' +
+                ", previousRounds=" + previousRounds +
+                ", collateral='" + collateral + '\'' +
+                ", businessPlanLastChange=" + businessPlanLastChange +
+                ", isActive=" + isActive +
                 ", projects=" + projects +
                 '}';
     }
