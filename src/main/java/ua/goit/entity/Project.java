@@ -58,6 +58,9 @@ public class Project {
     @Column(name = "isActive")
     private boolean isActive;
 
+    @Column(name = "previous_rounds")
+    private BigDecimal projectPreviousRounds;
+
     // one start up may have many business plans, and one business plan may have many start ups: many to many
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -79,7 +82,7 @@ public class Project {
 
     public Project(){}
 
-    public Project(String projectName, Industry projectIndustry, Address projectAddress, String projectDescription, String logoLink, String projectDocLink, String projectSiteLink, BigDecimal projectExpectedRaise, BigDecimal projectAmountRaised, BigDecimal projectMinInv, long projectReturn, LocalDate projectLastChange, boolean isActive) {
+    public Project(String projectName, Industry projectIndustry, Address projectAddress, String projectDescription, String logoLink, String projectDocLink, String projectSiteLink, BigDecimal projectExpectedRaise, BigDecimal projectAmountRaised, BigDecimal projectMinInv, double projectReturn, LocalDate projectLastChange, boolean isActive, BigDecimal projectPreviousRounds) {
         this.projectName = projectName;
         this.projectIndustry = projectIndustry;
         this.projectAddress = projectAddress;
@@ -93,8 +96,8 @@ public class Project {
         this.projectReturn = projectReturn;
         this.projectLastChange = projectLastChange;
         this.isActive = isActive;
+        this.projectPreviousRounds = projectPreviousRounds;
     }
-
 
     public long getProjectId() {
         return projectId;
@@ -208,9 +211,21 @@ public class Project {
         isActive = active;
     }
 
+    public void setProjectReturn(double projectReturn) {
+        this.projectReturn = projectReturn;
+    }
+
+    public BigDecimal getProjectPreviousRounds() {
+        return projectPreviousRounds;
+    }
+
+    public void setProjectPreviousRounds(BigDecimal projectPreviousRounds) {
+        this.projectPreviousRounds = projectPreviousRounds;
+    }
+
     @Override
     public String toString() {
-        return "Classes.Project{" +
+        return "Project{" +
                 "projectId=" + projectId +
                 ", projectName='" + projectName + '\'' +
                 ", projectIndustry=" + projectIndustry +
@@ -225,8 +240,8 @@ public class Project {
                 ", projectReturn=" + projectReturn +
                 ", projectLastChange=" + projectLastChange +
                 ", isActive=" + isActive +
+                ", projectPreviousRounds=" + projectPreviousRounds +
                 ", businessPlans=" + businessPlans +
                 '}';
     }
-
 }

@@ -213,80 +213,84 @@
       <Position>14</Position>
       <DataType>bigint(20)|0</DataType>
     </column>
-    <index id="59" parent="7" name="FKdo5476d0t5w2s39o5unscokee">
+    <column id="59" parent="7" name="previous_rounds">
+      <Position>15</Position>
+      <DataType>decimal(19,2)|0</DataType>
+    </column>
+    <index id="60" parent="7" name="FKdo5476d0t5w2s39o5unscokee">
       <ColNames>projectAddress_address_id</ColNames>
     </index>
-    <key id="60" parent="7" name="PRIMARY">
+    <key id="61" parent="7" name="PRIMARY">
       <ColNames>project_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="61" parent="7" name="FKdo5476d0t5w2s39o5unscokee">
+    <foreign-key id="62" parent="7" name="FKdo5476d0t5w2s39o5unscokee">
       <ColNames>projectAddress_address_id</ColNames>
       <RefSchemaName>startup</RefSchemaName>
       <RefTableName>address</RefTableName>
       <RefColNames>address_id</RefColNames>
     </foreign-key>
-    <column id="62" parent="8" name="projects_project_id">
+    <column id="63" parent="8" name="projects_project_id">
       <Position>1</Position>
       <DataType>bigint(20)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="63" parent="8" name="businessPlans_businessplan_id">
+    <column id="64" parent="8" name="businessPlans_businessplan_id">
       <Position>2</Position>
       <DataType>bigint(20)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="64" parent="8" name="FKsnpkrdpb7f1hsp72jquujftrh">
+    <index id="65" parent="8" name="FKsnpkrdpb7f1hsp72jquujftrh">
       <ColNames>businessPlans_businessplan_id</ColNames>
     </index>
-    <key id="65" parent="8" name="PRIMARY">
+    <key id="66" parent="8" name="PRIMARY">
       <ColNames>projects_project_id
 businessPlans_businessplan_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="66" parent="8" name="FK6e5uenprs2uj33ca2j73l4jwm">
+    <foreign-key id="67" parent="8" name="FK6e5uenprs2uj33ca2j73l4jwm">
       <ColNames>projects_project_id</ColNames>
       <RefSchemaName>startup</RefSchemaName>
       <RefTableName>projects</RefTableName>
       <RefColNames>project_id</RefColNames>
     </foreign-key>
-    <foreign-key id="67" parent="8" name="FKsnpkrdpb7f1hsp72jquujftrh">
+    <foreign-key id="68" parent="8" name="FKsnpkrdpb7f1hsp72jquujftrh">
       <ColNames>businessPlans_businessplan_id</ColNames>
       <RefSchemaName>startup</RefSchemaName>
       <RefTableName>businessplans</RefTableName>
       <RefColNames>businessplan_id</RefColNames>
     </foreign-key>
-    <column id="68" parent="9" name="USER_USERNAME">
+    <column id="69" parent="9" name="USER_USERNAME">
       <Position>1</Position>
       <DataType>varchar(45)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="69" parent="9" name="ROLE">
+    <column id="70" parent="9" name="ROLE">
       <Position>2</Position>
       <DataType>varchar(45)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="70" parent="9" name="PRIMARY">
+    <key id="71" parent="9" name="PRIMARY">
       <ColNames>USER_USERNAME
 ROLE</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="71" parent="10" name="USERNAME">
+    <column id="72" parent="10" name="USERNAME">
       <Position>1</Position>
       <DataType>varchar(45)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="72" parent="10" name="PASSWORD">
+    <column id="73" parent="10" name="PASSWORD">
       <Position>2</Position>
       <DataType>varchar(455)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="73" parent="10" name="EMAIL">
+    <column id="74" parent="10" name="EMAIL">
       <Position>3</Position>
       <DataType>varchar(45)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="74" parent="10" name="PRIMARY">
+    <key id="75" parent="10" name="PRIMARY">
       <ColNames>USERNAME</ColNames>
       <Primary>1</Primary>
     </key>

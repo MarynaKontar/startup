@@ -39,8 +39,8 @@ public class ShowProjectsController {
         return modelAndView;
     }
 
-    /*
 
+    /*
     @PostConstruct
     public void initDefaultProjects() {
 
@@ -50,21 +50,23 @@ public class ShowProjectsController {
         Address addressKherson = new Address ("Kherson", Region.Kherson, Country.UKRAINE);
         Address addressOdessa = new Address ("Odessa", Region.Odessa, Country.UKRAINE);
 
+        BigDecimal previousRounds = new BigDecimal(10000);
         BigDecimal inv = new BigDecimal(100000);
         BigDecimal raised = new BigDecimal(10000);
         BigDecimal mininv = new BigDecimal(1000);
 
         Project project1 = new Project ("Kherson Farm", Industry.Agriculture, addressKherson,
                 "Grow stuff in Kherson","logourl", "docurl", "weburl",
-                inv, raised, mininv, 20, LocalDate.parse("10/09/2017", formatter), true);
+                inv, raised, mininv, 20, LocalDate.parse("10/09/2017", formatter), true, previousRounds);
 
+        BigDecimal previousRounds2 = new BigDecimal(20000);
         BigDecimal inv2 = new BigDecimal(200000);
         BigDecimal raised2 = new BigDecimal(20000);
         BigDecimal mininv2 = new BigDecimal(2000);
 
         Project project2 = new Project ("Odessa Terminal", Industry.Transportation, addressOdessa,
                 "Export stuff from Odessa","logourl", "docurl", "weburl",
-                inv2, raised2, mininv2, 30, LocalDate.parse("15/09/2017", formatter), true);
+                inv2, raised2, mininv2, 30, LocalDate.parse("15/09/2017", formatter), true, previousRounds2);
 
         System.out.println("saving default projects");
 
@@ -73,6 +75,6 @@ public class ShowProjectsController {
 
         System.out.println("success!");
 
-    } */
+    }*/
 
 }
