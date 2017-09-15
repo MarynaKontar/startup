@@ -18,7 +18,7 @@ public class BusinessPlan {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "businessplan_id", updatable=false, nullable=false)
     private long businessplan_id;
-    
+
     @Column(name = "project_id")
     private long projectId;
 
@@ -93,7 +93,7 @@ public class BusinessPlan {
 
     // many to many relationship mapping:
 
-    @ManyToMany(mappedBy = "businessPlans")
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "businessPlans")
     private Collection<Project> projects;
 
 

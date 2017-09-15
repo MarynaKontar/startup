@@ -34,8 +34,8 @@ public class ShowBusinessPlansController {
         List<String> businessPlanNames =
                 businessPlansService.findAll().stream().map(BusinessPlan::toString).collect(Collectors.toList());
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("business plans");
-        modelAndView.addObject("business plans", businessPlanNames);
+        modelAndView.setViewName("businessPlans");
+        modelAndView.addObject("businessPlans", businessPlanNames);
         return modelAndView;
     }
 
