@@ -20,27 +20,14 @@ public class User {
 
     private String profileFotoLink;
     private String personalPageFotoLink;
-//
+
     private String youtubeLink;
     private String aboutMe;
-//
-//    //TODO 6 прописать маппинг
-//    private Collection<Experience> experiences;
-//    private Collection<Education> educations;
-    private String skills;
 
-    @OneToOne
-    @JoinColumn(name = "contact_id")
-    private Contact contact;
-
-    private String profileFotoLink;
-    private String personalPageFotoLink;
-//
-    private String youtubeLink;
-    private String aboutMe;
-//
 //    //TODO 6 прописать маппинг
-//    private Collection<Experience> experiences;
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    private Collection<Experience> experiences;
 //    private Collection<Education> educations;
     private String skills;
 
@@ -106,86 +93,6 @@ public class User {
         this.aboutMe = aboutMe;
     }
 
-//    public Collection<Experience> getExperiences() {
-//        return experiences;
-//    }
-//
-//    public void setExperiences(Collection<Experience> experiences) {
-//        this.experiences = experiences;
-//    }
-//
-//    public Collection<Education> getEducations() {
-//        return educations;
-//    }
-//
-//    public void setEducations(Collection<Education> educations) {
-//        this.educations = educations;
-//    }
-
-    public String getSkills() {
-        return skills;
-    }
-
-    public void setSkills(String skills) {
-        this.skills = skills;
-    }
-
-    public Contact getContact() {
-        return contact;
-    }
-
-    public void setContact(Contact contact) {
-        this.contact = contact;
-    }
-
-    public String getProfileFotoLink() {
-        return profileFotoLink;
-    }
-
-    public void setProfileFotoLink(String profileFotoLink) {
-        this.profileFotoLink = profileFotoLink;
-    }
-
-    public String getPersonalPageFotoLink() {
-        return personalPageFotoLink;
-    }
-
-    public void setPersonalPageFotoLink(String personalPageFotoLink) {
-        this.personalPageFotoLink = personalPageFotoLink;
-    }
-
-    public String getYoutubeLink() {
-        return youtubeLink;
-    }
-
-    public void setYoutubeLink(String youtubeLink) {
-        this.youtubeLink = youtubeLink;
-    }
-
-    public String getAboutMe() {
-        return aboutMe;
-    }
-
-    public void setAboutMe(String aboutMe) {
-        this.aboutMe = aboutMe;
-    }
-
-//    public Collection<Experience> getExperiences() {
-//        return experiences;
-//    }
-//
-//    public void setExperiences(Collection<Experience> experiences) {
-//        this.experiences = experiences;
-//    }
-//
-//    public Collection<Education> getEducations() {
-//        return educations;
-//    }
-//
-//    public void setEducations(Collection<Education> educations) {
-//        this.educations = educations;
-//    }
-
     public String getSkills() {
         return skills;
     }
@@ -201,5 +108,23 @@ public class User {
     public void setRoles(Collection<Role> roles) {
         this.roles = roles;
     }
+
+        public Collection<Experience> getExperiences() {
+        return experiences;
+    }
+
+    public void setExperiences(Collection<Experience> experiences) {
+        this.experiences = experiences;
+    }
+//
+//    public Collection<Education> getEducations() {
+//        return educations;
+//    }
+//
+//    public void setEducations(Collection<Education> educations) {
+//        this.educations = educations;
+//    }
+
+
 
 }
