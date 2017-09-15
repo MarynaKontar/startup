@@ -15,9 +15,9 @@
 </head>
 <body>
 <table>
-    <c:forEach var="businessPlan" items="${businessPlan}">
+    <c:forEach var="businessPlan" items="${businessPlans}">
         <tr>
-            <td>
+            <td>    
                     ${businessPlan}
             </td>
         </tr>

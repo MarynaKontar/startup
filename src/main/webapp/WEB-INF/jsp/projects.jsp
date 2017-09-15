@@ -15,7 +15,7 @@
 </head>
 <body>
 <table>
-    <c:forEach var="project" items="${projet}">
+    <c:forEach var="project" items="${projects}">
         <tr>
             <td>
                     ${project}
