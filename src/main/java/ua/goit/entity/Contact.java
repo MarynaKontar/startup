@@ -1,30 +1,39 @@
 package ua.goit.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 
 /**
  * Created by User on 13.09.2017.
  */
-@Entity
+@Embeddable  ////можно сделать вложенную таблицу (убрать private long id)
+//@Entity
 public class Contact {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-//    @Email
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    private long id;
+    //    @Email
     private String email;
     private String phoneNumber;
+    @Enumerated(EnumType.STRING)
+    private City city;
+    @Enumerated(EnumType.STRING)
+    private Country country;
 
-    private String city;
-    private String country;
-
-    public long getId() {
-        return id;
+    public Contact() {
     }
+
+    public Contact(String email, String phoneNumber, City city, Country country) {
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.city = city;
+        this.country = country;
+    }
+
+//    public long getId() {
+//        return id;
+//    }
 
     public String getEmail() {
         return email;
@@ -42,30 +51,30 @@ public class Contact {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getCity() {
+    public City getCity() {
         return city;
     }
 
-    public void setCity(String city) {
+    public void setCity(City city) {
         this.city = city;
     }
 
-    public String getCountry() {
+    public Country getCountry() {
         return country;
     }
 
-    public void setCountry(String country) {
+    public void setCountry(Country country) {
         this.country = country;
     }
 
     @Override
     public String toString() {
         return "Contact{" +
-                "id=" + id +
+//                "id=" + id +
                 ", email='" + email + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
-                ", city='" + city + '\'' +
-                ", country='" + country + '\'' +
+                ", city=" + city +
+                ", country=" + country +
                 '}';
     }
 }

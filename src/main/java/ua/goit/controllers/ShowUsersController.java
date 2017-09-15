@@ -9,8 +9,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import ua.goit.entity.Role;
-import ua.goit.entity.User;
+import ua.goit.entity.*;
 import ua.goit.services.UserService;
 
 import javax.annotation.PostConstruct;
@@ -51,9 +50,10 @@ public class ShowUsersController {
         User user = new User();
         user.setUsername("admin");
         user.setPassword(passwordEncoder.encode("admin"));
-        user.setEmail("email");
         Collection<Role> roles = Arrays.asList(Role.DEVELOPER, Role.ADMIN);
         user.setRoles(roles);
+        Contact contact = new Contact("email","0503357740", City.KYIV, Country.UKRAINE);
+        user.setContact(contact);
         user.setPersonalPageFotoLink("jpeg/personalPageFoto/adminFoto.jpg");//TODO Как ссылку указывать?
         user.setYoutubeLink("https://www.youtube.com/watch?v=3wBteulZaAs&index=1&list=PL6jg6AGdCNaWF-sUH2QDudBRXo54zuN1t");
         user.setAboutMe("I'm admin!");
@@ -64,7 +64,6 @@ public class ShowUsersController {
         User user1 = new User();
         user1.setUsername("tolik");
         user1.setPassword(passwordEncoder.encode("tolik"));
-        user1.setEmail("emailtolik");
         Collection<Role> roles1 = Arrays.asList(Role.DEVELOPER, Role.ADMIN);
         user1.setRoles(roles1);
         usersService.save(user1);
@@ -72,7 +71,6 @@ public class ShowUsersController {
         User user2 = new User();
         user2.setUsername("user");
         user2.setPassword(passwordEncoder.encode("userpassword"));
-        user2.setEmail("emailuser");
         Collection<Role> roles2 = Arrays.asList(Role.DEVELOPER, Role.INVESTOR);
         user2.setRoles(roles2);
         usersService.save(user2);

@@ -13,10 +13,9 @@ public class User {
     @Id
     private String username;
     private String password;
-    private String email;
-
-    @OneToOne
-    @JoinColumn(name = "contact_id")
+@Embedded
+//    @OneToOne
+//    @JoinColumn(name = "contact_id")
     private Contact contact;
 
     private String profileFotoLink;
@@ -50,14 +49,6 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public Contact getContact() {
