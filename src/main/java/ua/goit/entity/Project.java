@@ -25,7 +25,7 @@ public class Project {
     @Column(name = "project_industry") // do enum of 10 industries - done!
     private Industry projectIndustry;
 
-    @OneToOne(cascade = CascadeType.ALL) // do a class address - done!
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL) // do a class address - done!
     private Address projectAddress;
 
     @Column(name = "project_description")
@@ -63,7 +63,7 @@ public class Project {
 
     // one start up may have many business plans, and one business plan may have many start ups: many to many
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<BusinessPlan> businessPlans = new HashSet<BusinessPlan>(0);
 
     @JoinTable(name = "projects_businessplans", joinColumns = {

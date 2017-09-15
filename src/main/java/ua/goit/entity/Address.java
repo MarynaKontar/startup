@@ -33,10 +33,6 @@ public class Address {
         this.country = country;
     }
 
-// Question: as we put the object in the project and business plan objects, we do not need a reference with
-    // an ID, correct?
-
-
     public long getAddressId() {
         return addressId;
     }

@@ -18,13 +18,11 @@ public class BusinessPlan {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "businessplan_id", updatable=false, nullable=false)
     private long businessplan_id;
-
-    // one start up may have many business plans, many to one relationship
-    //@ManyToOne(cascade = CascadeType.ALL)
+    
     @Column(name = "project_id")
     private long projectId;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Address address;
 
     @Column(name = "idea")
