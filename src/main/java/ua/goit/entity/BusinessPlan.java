@@ -4,15 +4,17 @@ import javax.persistence.*;
 import java.util.Collection;
 
 /**
- * Created by Guillaume Gingembre on 12/09/2017.
+ * Created by Guillaume Gingembre on 14/09/2017.
  */
+
 
 @Entity
 @Table(name = "businessplans")
 public class BusinessPlan {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "businessplan_id")
+    @Column(name = "businessplan_id", updatable=false, nullable=false)
     private long businessplan_id;
 
     // one start up may have many business plans, many to one relationship
@@ -20,7 +22,7 @@ public class BusinessPlan {
     @Column(name = "project_id")
     private String projectId;
 
-    @Column(name = "address")
+    @OneToOne(cascade = CascadeType.ALL)
     private Address address;
 
     @Column(name = "idea")
@@ -71,16 +73,13 @@ public class BusinessPlan {
     @Column(name = "docurl")
     private String docurl;
 
-
-    public BusinessPlan (){}
-
-
-
-
     // many to many relationship mapping:
 
-    @ManyToMany(mappedBy = "businessplans")
+    @ManyToMany(mappedBy = "businessPlans")
     private Collection<Project> projects;
+
+
+    public BusinessPlan (){}
 
     public BusinessPlan(String projectId, Address address, String idea, String currentState, String market, String opportunity, String solution, String competition, String usp, String businessModel, String fundsUses, String mentors, String risks, String finances, String previousRounds, String collateral, String weburl, String docurl, Collection<Project> projects) {
         this.projectId = projectId;
@@ -266,7 +265,7 @@ public class BusinessPlan {
 
     @Override
     public String toString() {
-        return "BusinessPlan{" +
+        return "Classes.BusinessPlan{" +
                 "businessplan_id=" + businessplan_id +
                 ", projectId='" + projectId + '\'' +
                 ", address=" + address +

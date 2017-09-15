@@ -12,11 +12,11 @@ import java.util.Set;
 
 @Entity
 @Table(name = "projects")
-public class Project { // name it Project
+public class Project {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "project_id")
+    @Column(name = "project_id", updatable=false, nullable=false)
     private long projectId;
 
     @Column(name = "project_name")
@@ -25,7 +25,7 @@ public class Project { // name it Project
     @Column(name = "project_industry") // do enum of 10 industries - done!
     private Industry projectIndustry;
 
-    @Column(name = "project_address") // do a class address - done!
+    @OneToOne(cascade = CascadeType.ALL) // do a class address - done!
     private Address projectAddress;
 
     @Column(name = "project_description")
@@ -50,7 +50,7 @@ public class Project { // name it Project
     private BigDecimal projectMinInv;
 
     @Column(name = "project_return")
-    private long projectReturn;
+    private double projectReturn;
 
     @Column(name = "project_last_change")
     private LocalDate projectLastChange;
@@ -58,9 +58,28 @@ public class Project { // name it Project
     @Column(name = "isActive")
     private boolean isActive;
 
+    // one start up may have many business plans, and one business plan may have many start ups: many to many
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<BusinessPlan> businessPlans = new HashSet<BusinessPlan>(0);
+
+    @JoinTable(name = "projects_businessplans", joinColumns = {
+            @JoinColumn(name = "project_Id", nullable = false, updatable = false) },
+            inverseJoinColumns = { @JoinColumn(name = "businessplan_id",
+                    nullable = false, updatable = false) })
+
+    public Set<BusinessPlan> getBusinessPlans() {
+        return businessPlans;
+    }
+
+    public void setBusinessPlans(Set<BusinessPlan> businessPlans) {
+        this.businessPlans = businessPlans;
+    }
+
+
     public Project(){}
 
-    public Project(String projectName, Industry projectIndustry, Address projectAddress, String projectDescription, String logoLink, String projectDocLink, String projectSiteLink, BigDecimal projectExpectedRaise, BigDecimal projectAmountRaised, BigDecimal projectMinInv, long projectReturn, LocalDate projectLastChange, boolean isActive, Set<BusinessPlan> businessPlans) {
+    public Project(String projectName, Industry projectIndustry, Address projectAddress, String projectDescription, String logoLink, String projectDocLink, String projectSiteLink, BigDecimal projectExpectedRaise, BigDecimal projectAmountRaised, BigDecimal projectMinInv, long projectReturn, LocalDate projectLastChange, boolean isActive) {
         this.projectName = projectName;
         this.projectIndustry = projectIndustry;
         this.projectAddress = projectAddress;
@@ -74,18 +93,7 @@ public class Project { // name it Project
         this.projectReturn = projectReturn;
         this.projectLastChange = projectLastChange;
         this.isActive = isActive;
-        this.businessPlans = businessPlans;
     }
-
-// one start up may have many business plans, and one business plan may have many start ups: many to many
-
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<BusinessPlan> businessPlans = new HashSet<BusinessPlan>(0);
-
-    @JoinTable(name = "projects_businessplans", joinColumns = {
-            @JoinColumn(name = "project_Id", nullable = false, updatable = false) },
-            inverseJoinColumns = { @JoinColumn(name = "businessplan_id",
-                    nullable = false, updatable = false) })
 
 
     public long getProjectId() {
@@ -176,7 +184,7 @@ public class Project { // name it Project
         this.projectMinInv = projectMinInv;
     }
 
-    public long getProjectReturn() {
+    public double getProjectReturn() {
         return projectReturn;
     }
 
@@ -200,17 +208,9 @@ public class Project { // name it Project
         isActive = active;
     }
 
-    public Set<BusinessPlan> getBusinessPlans() {
-        return businessPlans;
-    }
-
-    public void setBusinessPlans(Set<BusinessPlan> businessPlans) {
-        this.businessPlans = businessPlans;
-    }
-
     @Override
     public String toString() {
-        return "Project{" +
+        return "Classes.Project{" +
                 "projectId=" + projectId +
                 ", projectName='" + projectName + '\'' +
                 ", projectIndustry=" + projectIndustry +
@@ -228,4 +228,5 @@ public class Project { // name it Project
                 ", businessPlans=" + businessPlans +
                 '}';
     }
+
 }
