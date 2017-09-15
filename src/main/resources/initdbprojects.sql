@@ -1,5 +1,5 @@
-CREATE DATABASE  IF NOT EXISTS `startuptest` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `startuptest`;
+-- CREATE DATABASE  IF NOT EXISTS `startuptest` /*!40100 DEFAULT CHARACTER SET latin1 */;
+-- USE `startuptest`;
 -- MySQL dump 10.13  Distrib 5.7.19, for Linux (x86_64)
 --
 -- Host: localhost    Database: startuptest
