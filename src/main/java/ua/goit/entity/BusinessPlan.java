@@ -1,6 +1,7 @@
 package ua.goit.entity;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.Collection;
 
 /**
@@ -20,7 +21,7 @@ public class BusinessPlan {
     // one start up may have many business plans, many to one relationship
     //@ManyToOne(cascade = CascadeType.ALL)
     @Column(name = "project_id")
-    private String projectId;
+    private long projectId;
 
     @OneToOne(cascade = CascadeType.ALL)
     private Address address;
@@ -62,7 +63,7 @@ public class BusinessPlan {
     private String finances;
 
     @Column(name = "previous_rounds")
-    private String previousRounds;
+    private BigDecimal previousRounds;
 
     @Column(name = "collateral")
     private String collateral;
@@ -81,7 +82,7 @@ public class BusinessPlan {
 
     public BusinessPlan (){}
 
-    public BusinessPlan(String projectId, Address address, String idea, String currentState, String market, String opportunity, String solution, String competition, String usp, String businessModel, String fundsUses, String mentors, String risks, String finances, String previousRounds, String collateral, String weburl, String docurl, Collection<Project> projects) {
+    public BusinessPlan(long projectId, Address address, String idea, String currentState, String market, String opportunity, String solution, String competition, String usp, String businessModel, String fundsUses, String mentors, String risks, String finances, BigDecimal previousRounds, String collateral, String weburl, String docurl){ //, Collection<Project> projects) {
         this.projectId = projectId;
         this.address = address;
         this.idea = idea;
@@ -100,7 +101,7 @@ public class BusinessPlan {
         this.collateral = collateral;
         this.weburl = weburl;
         this.docurl = docurl;
-        this.projects = projects;
+        //this.projects = projects;
     }
 
     public long getBusinessplan_id() {
@@ -111,11 +112,11 @@ public class BusinessPlan {
         this.businessplan_id = businessplan_id;
     }
 
-    public String getProjectId() {
+    public long getProjectId() {
         return projectId;
     }
 
-    public void setProjectId(String projectId) {
+    public void setProjectId(long projectId) {
         this.projectId = projectId;
     }
 
@@ -223,11 +224,11 @@ public class BusinessPlan {
         this.finances = finances;
     }
 
-    public String getPreviousRounds() {
+    public BigDecimal getPreviousRounds() {
         return previousRounds;
     }
 
-    public void setPreviousRounds(String previousRounds) {
+    public void setPreviousRounds(BigDecimal previousRounds) {
         this.previousRounds = previousRounds;
     }
 

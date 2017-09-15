@@ -1,10 +1,6 @@
 package ua.goit.controllers;
 
-import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -12,12 +8,9 @@ import ua.goit.entity.*;
 import ua.goit.services.ProjectService;
 
 import javax.annotation.PostConstruct;
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -45,6 +38,8 @@ public class ShowProjectsController {
         modelAndView.addObject("projects", projectnames);
         return modelAndView;
     }
+
+    /*
 
     @PostConstruct
     public void initDefaultProjects() {
@@ -78,6 +73,6 @@ public class ShowProjectsController {
 
         System.out.println("success!");
 
-    }
+    } */
 
 }
