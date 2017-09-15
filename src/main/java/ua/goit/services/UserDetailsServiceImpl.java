@@ -111,6 +111,32 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             return user.getContact();
         }
 
+        public String getProfileFotoLink() {
+            return user.getProfileFotoLink();
+        }
+
+        public String getPersonalPageFotoLink() {
+            return user.getPersonalPageFotoLink();
+        }
+
+        public String getYoutubeLink() {
+            return user.getYoutubeLink();
+        }
+
+        public String getAboutMe() {
+            return user.getAboutMe();
+        }
+
+        public String getSkills() {
+            return user.getSkills();
+        }
+
+        //        public String getEmail() {
+//            return user.getContact().getEmail();
+//        }
+
+        //TODO сделать метод getContact() вместо getEmail()
+
         //TODO 5 Добавлять геттеры для всех новых полей, которые появятся в {@link ua.goit.entity.User}
     }
 }
